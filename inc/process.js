@@ -3,13 +3,19 @@ var allDocumentPages = new Array();
 
 (function($) {
     $(document).ready(function() {
+        $('#btn_reset').click(function() {
+            allDocumentPages = new Array();
+            $('#documents_processed').html("");
+            $('#pages_printed').html("");
+        });
+        
         if (window.File && window.FileReader && window.FileList && window.Blob) {
             // Great, all the file APIs supported
             // Apply our own actions to dragover
             $('#drop_zone').bind('dragover', function (e) {
                 e.stopPropagation();
                 e.preventDefault();
-                e.originalEvent.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+                e.originalEvent.dataTransfer.dropEffect = 'copy'; // Explicitly show as copy
             });
 
             // And to drop
